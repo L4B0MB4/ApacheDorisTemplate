@@ -30,6 +30,6 @@ UNIQUE KEY(user_id)
 DISTRIBUTED BY HASH(user_id)
 PROPERTIES( "replication_num"="1", "enable_unique_key_merge_on_write"="false");
 
-drop table MyDB.example_unique_table
+-- drop table MyDB.example_unique_table
 
 ```

@@ -37,3 +37,19 @@ services:
     networks:
       doris-net:
         ipv4_address: 172.28.0.11
+  spark:
+    image: apache/spark:3.5.7-python3
+    container_name: doris-spark
+    depends_on:
+      - fe
+      - be
+    networks:
+      doris-net:
+        ipv4_address: 172.28.0.20
+    volumes:
+      - ./spark:/opt/spark-app
+    command: >
+      /opt/spark/bin/spark-submit
+      --master local[*]
+      --jars /opt/spark-app/jars/spark-doris-connector-spark-3.5-25.2.0.jar
+      /opt/spark-app/main.py

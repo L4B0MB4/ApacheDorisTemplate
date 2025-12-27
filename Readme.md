@@ -33,3 +33,6 @@ PROPERTIES( "replication_num"="1", "enable_unique_key_merge_on_write"="false");
 -- drop table MyDB.example_unique_table
 
 ```
+
+Jupyter Notebooks are available locally on `localhost:8888` while the default
+apache doris frontend is available on `localhost:9030`

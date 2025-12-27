@@ -3,6 +3,7 @@ from pyspark.sql import SparkSession
 
 spark = SparkSession.builder \
     .appName("DorisPySparkExample") \
+    .config("spark.driver.extraClassPath", "./jars/spark-doris-connector-spark-3.5-25.2.0.jar") \
     .getOrCreate()
 
 df = spark.read \
@@ -15,3 +16,4 @@ df = spark.read \
 
 df.show() 
 
+spark.stop()

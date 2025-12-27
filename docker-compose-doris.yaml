@@ -38,7 +38,9 @@ services:
       doris-net:
         ipv4_address: 172.28.0.11
   spark:
-    image: apache/spark:3.5.7-python3
+    build:
+      context: ./spark
+    image: doris-spark-jupyter:3.5.7
     container_name: doris-spark
     depends_on:
       - fe
@@ -47,9 +49,12 @@ services:
       doris-net:
         ipv4_address: 172.28.0.20
     volumes:
-      - ./spark:/opt/spark-app
-    command: >
-      /opt/spark/bin/spark-submit
-      --master local[*]
-      --jars /opt/spark-app/jars/spark-doris-connector-spark-3.5-25.2.0.jar
-      /opt/spark-app/main.py
+      - ./spark:/opt/spark-app  
+    environment:
+    - HOME=/opt/spark-app
+    - JUPYTER_RUNTIME_DIR=/tmp/jupyter/runtime
+    - JUPYTER_DATA_DIR=/tmp/jupyter/data
+    - JUPYTER_CONFIG_DIR=/tmp/jupyter/config
+    ports:
+      - "8888:8888"
+    command: ["/bin/bash", "/opt/spark-app/start.sh"]

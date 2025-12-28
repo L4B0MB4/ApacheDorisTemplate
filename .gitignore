@@ -3,3 +3,5 @@ spark/.ipython
 spark/.jupyter
 spark/.npm
 spark/.ipynb_checkpoints
+doris/be
+doris/fe

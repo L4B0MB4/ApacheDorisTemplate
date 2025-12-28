@@ -15,6 +15,9 @@ services:
     environment:
       - FE_SERVERS=fe1:172.28.0.10:9010
       - FE_ID=1
+    volumes:
+      - ./doris/fe/meta:/opt/apache-doris/fe/doris-meta
+      - ./doris/fe/log:/opt/apache-doris/fe/log
     ports:
       - "8030:8030"
       - "9010:9010"
@@ -32,6 +35,9 @@ services:
     environment:
       - FE_SERVERS=fe1:172.28.0.10:9010
       - BE_ADDR=172.28.0.11:9050
+    volumes:
+      - ./doris/be/storage:/opt/apache-doris/be/storage
+      - ./doris/be/log:/opt/apache-doris/be/log
     ports:
       - "9050:9050"
     networks:
